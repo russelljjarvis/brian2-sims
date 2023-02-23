@@ -8,10 +8,8 @@ from simulations.balanced_network import balanced_network
 import os
 from datetime import datetime
 
-#import git
 import sys
 sys.path.extend(os.getcwd())
-#sys.path.extend([git.Repo('.').git.rev_parse('--show-toplevel')])
 
 import argparse
 from brian2 import DEFAULT_FUNCTIONS, prefs, set_device, ms
@@ -24,15 +22,14 @@ DEFAULT_FUNCTIONS.update({'stochastic_decay': stochastic_decay,
                           'fp8_smaller_than': fp8_smaller_than,
                           'deterministic_decay': deterministic_decay})
 
+#f"""{datetime.now().strftime('%Y.%m.%d')}"""
 
 parser = argparse.ArgumentParser(
     description='Main file that executes specified simulation',
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--save_path',
                     type=str,
-                    default=f"""{datetime.now().strftime('%Y.%m.%d')}"""
-                            f"""_{datetime.now().hour}."""
-                            f"""{datetime.now().minute}/""",
+                    default="julia_read_results",
                     help=f'directory to save, creating folder and overwriting '
                          f'existing ones. Defaults to datetime name.')
 parser.add_argument('--code_path',
